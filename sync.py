@@ -1,5 +1,6 @@
 import os
 import requests
+import json  # Moved to the top
 from bs4 import BeautifulSoup
 from urllib.parse import urljoin
 
@@ -52,9 +53,29 @@ def sync_country(country):
                 except Exception as e:
                     print(f"Failed to download {file_url}: {e}")
 
+def generate_index():
+    print("\n--- Generating index.json ---")
+    manifest = {}
+    for country in TARGET_COUNTRIES:
+        country_dir = os.path.join(OUTPUT_ROOT, country)
+        if os.path.exists(country_dir):
+            # Get list of files, ignoring hidden files like .DS_Store
+            files = [f for f in os.listdir(country_dir) if not f.startswith('.')]
+            manifest[country] = files
+
+    # Save the JSON file inside the logos directory
+    index_path = os.path.join(OUTPUT_ROOT, "index.json")
+    with open(index_path, "w") as f:
+        json.dump(manifest, f)
+    print(f"Index saved to {index_path}")
+
 def main():
+    # 1. Download all the images first
     for country in TARGET_COUNTRIES:
         sync_country(country)
+        
+    # 2. Then generate the index file based on what was downloaded
+    generate_index()
 
 if __name__ == "__main__":
     main()
