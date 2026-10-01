@@ -1,0 +1,15 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=ISO-8859-1"/>
+<title>Error 400 Bad UTF-8 encoding</title>
+</head>
+<body>
+<h2>HTTP ERROR 400 Bad UTF-8 encoding</h2>
+<table>
+<tr><th>URI:</th><td>http://cdn.iptvboss.pro/logos/USA/Vevo%CDconosLatinos.pluto.png</td></tr>
+<tr><th>STATUS:</th><td>400</td></tr>
+<tr><th>MESSAGE:</th><td>Bad UTF-8 encoding</td></tr>
+</table>
+
+</body>
+</html>
