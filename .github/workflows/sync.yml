@@ -2,10 +2,8 @@ name: Sync Logos from CDN
 
 on:
   schedule:
-    # Runs automatically once a day at Midnight UTC
     - cron: "0 0 * * *"
   workflow_dispatch:
-    # Allows manual runs from the Actions tab
 
 jobs:
   sync:
@@ -31,10 +29,13 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           
+          # Stage the entire logos directory (including index.json and list.txt if generated)
           git add logos/
           
           if ! git diff-index --quiet HEAD; then
             git commit -m "Automated backup: Sync logos"
+            # Pull any new commits made to GitHub while the script was running
+            git pull --rebase origin main
             git push
           else
             echo "No new logos to commit."
