@@ -12,7 +12,7 @@ OUTPUT_ROOT = "logos"
 TARGET_COUNTRIES = [
     "USA",
     "Canada",
-    # "UK",
+    "UK",
 ]
 
 def sync_country(country):
