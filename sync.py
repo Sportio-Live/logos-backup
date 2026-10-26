@@ -13,6 +13,7 @@ TARGET_COUNTRIES = [
     "USA",
     "Canada",
     "UK",
+    "Australia",
 ]
 
 def sync_country(country):
